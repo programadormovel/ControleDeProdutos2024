@@ -1,0 +1,52 @@
+﻿@model ProdutoModel
+@{
+}
+
+<h1 class="display-4">Cadastro de Produtos</h1>
+
+<form asp-controller="Produto" asp-action="Criar" method="post" class="col" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição</label>
+        <input type="text" asp-for="Descricao" class="form-control" id="descricao" placeholder="Entre com a descrição do produto">
+        <span asp-validation-for="Descricao" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="descricao" class="form-label">Código de Barras</label>
+        <input type="text" asp-for="CodigoDeBarras" class="form-control" id="codigoDeBarras" placeholder="">
+        <span asp-validation-for="CodigoDeBarras" class="text-danger"></span>
+    </div>
+    <div class="row mt-4">
+        <div class="col-sm-3">
+            <label for="descricao" class="form-label">Data de Validade</label>
+            <input type="date" asp-for="DataDeValidade" class="form-control" id="dataDeValidade" placeholder="Entre com a descrição do produto">
+            <span asp-validation-for="DataDeValidade" class="text-danger"></span>
+        </div>
+        <div class="col-sm-3">
+            <label for="descricao" class="form-label">Quantidade</label>
+            <input type="number" asp-for="Quantidade" class="form-control" id="quantidade" placeholder="">
+            <span asp-validation-for="Quantidade" class="text-danger"></span>
+        </div>
+        <div class="col-sm-3">
+            <label for="descricao" class="form-label">Valor</label>
+            <input type="text" asp-for="Valor" class="form-control" id="valor" placeholder="R$ 0,00">
+            <span asp-validation-for="Valor" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div>
+        <label for="imagemCarregada" class="form-label">Foto</label>
+        <input type="file" accept="image/png, image/jpeg" class="form-control" id="imagemCarregada" placeholder="Busque a foto do produto." name="imagemCarregada" >
+    </div>
+    
+    <div class="mb-3">
+        <label for="descricao" class="form-label">Ativo</label>
+        <input type="checkbox" asp-for="Ativo" class="form-check-input" id="ativo" placeholder="" checked>
+        <span asp-validation-for="Ativo" class="text-danger"></span>
+    </div>
+
+    
+    <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+    <div>
+        <a class="btn btn-secundary btn-block" asp-controller="Produto" asp-action="Index" role="button">Voltar</a>
+    </div>
+</form>

@@ -1,5 +1,6 @@
 ﻿using ControleDeProdutos2024.Data;
 using ControleDeProdutos2024.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ControleDeProdutos2024.Repository
 {
@@ -15,24 +16,36 @@ namespace ControleDeProdutos2024.Repository
         }
 
 
-        public LoginModel Adicionar(LoginModel login)
+        public async Task<LoginModel> Adicionar(LoginModel login)
         {
-            _bancoContext.Login.Add(login);
-            _bancoContext.SaveChanges();
-            return login;
+            await _bancoContext.Login.AddAsync(login);
+            await _bancoContext.SaveChangesAsync();
+
+            return await Task.FromResult(login);
         }
 
-        public List<LoginModel> BuscarTodos()
-        {
-            throw new NotImplementedException();
-        }
-
-        public LoginModel Login(string email)
+        public Task<List<LoginModel>> BuscarTodos()
         {
             throw new NotImplementedException();
         }
 
-        public LoginModel Login(string email, string senha)
+        public async Task<LoginModel> Login(string email)
+        {
+            LoginModel login = new LoginModel();
+
+            try
+            {
+                login = await _bancoContext.Login.FirstOrDefaultAsync(x => x.Email == email);
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException();
+            }
+
+            return await Task.FromResult(login);
+        }
+
+        public Task<LoginModel> Login(string email, string senha)
         {
             throw new NotImplementedException();
         }

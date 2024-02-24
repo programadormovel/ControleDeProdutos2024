@@ -21,6 +21,17 @@ builder.Services.AddRazorPages().AddMvcOptions(options =>
     options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(_ => "Este campo é obrigatório!");
 });
 
+// Habilita o MemoryCache
+builder.Services.AddDistributedMemoryCache();
+// Define configurações padrões de sessão
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".ControleDeProdutos2024.Session";
+    options.IdleTimeout = TimeSpan.FromSeconds(99999);
+    //options.Cookie.HttpOnly = true; 
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,6 +42,10 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
+
+app.UseCors();
 
 app.UseAuthorization();
 

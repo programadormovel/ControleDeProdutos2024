@@ -4,10 +4,10 @@ namespace ControleDeProdutos2024.Repository
 {
     public interface ILoginRepositorio
     {
-        List<LoginModel> BuscarTodos();
-        LoginModel Adicionar(LoginModel login);
-        LoginModel Login(string email);
-        LoginModel Login(string email, string senha);
+        Task<List<LoginModel>> BuscarTodos();
+        Task<LoginModel> Adicionar(LoginModel login);
+        Task<LoginModel> Login(string email);
+        Task<LoginModel> Login(string email, string senha);
 
 
 

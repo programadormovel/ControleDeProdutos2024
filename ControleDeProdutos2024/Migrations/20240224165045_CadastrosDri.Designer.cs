@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControleDeProdutos2024.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20240217121707_Cadastros2024")]
-    partial class Cadastros2024
+    [Migration("20240224165045_CadastrosDri")]
+    partial class CadastrosDri
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,46 @@ namespace ControleDeProdutos2024.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ControleDeProdutos2024.Models.LoginModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("Ativo")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataDeRegistro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("EmailConfirmacao")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("NivelAcesso")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("TelefoneConfirmacao")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Usuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Login");
+                });
 
             modelBuilder.Entity("ControleDeProdutos2024.Models.ProdutoModel", b =>
                 {

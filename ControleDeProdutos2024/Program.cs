@@ -13,6 +13,7 @@ builder.Services.AddDbContext<BancoContext>(
            ));
 
 builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+builder.Services.AddScoped<ILoginRepositorio, LoginRepositorio>();
 
 builder.Services.AddRazorPages().AddMvcOptions(options =>
 {

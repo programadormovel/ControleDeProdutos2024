@@ -10,6 +10,7 @@ namespace ControleDeProdutos2024.Data
         }
 
         public DbSet<ProdutoModel> Produto { get; set; }
+        public DbSet<LoginModel> Login { get; set; }
 
     }
 }
